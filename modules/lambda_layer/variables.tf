@@ -1,4 +1,4 @@
-variable "aws-region" {
+variable "aws_region" {
   type        = string
   description = "The AWS Region"
   default     = "us-east-1"
