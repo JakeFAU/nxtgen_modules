@@ -34,7 +34,3 @@ output "src_code_id" {
   value       = aws_s3_bucket_object.file_upload.id
 }
 
-output "src_code_version" {
-  description = "The version of the src code in the bucket"
-  value       = aws_s3_bucket_object.file_upload.version
-}
