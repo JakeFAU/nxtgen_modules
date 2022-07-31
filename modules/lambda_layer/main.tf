@@ -4,7 +4,7 @@ provider "aws" {
 
 
 resource "null_resource" "pip" {
-  triggers {
+  triggers = {
     requirements = base64sha256(file("src/requirements.txt"))
   }
 
