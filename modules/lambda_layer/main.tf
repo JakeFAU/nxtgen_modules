@@ -21,7 +21,7 @@ data "archive_file" "source" {
   depends_on = [null_resource.pip]
 }
 
-resource "aws_s3_bucket_object" "file_upload" {
+resource "aws_s3_object" "file_upload" {
   bucket = var.lambda_layer_bucket
   key    = "lambda-layers/${var.layer_name}"
   source = data.archive_file.source.output_path
