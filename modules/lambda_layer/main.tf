@@ -9,7 +9,7 @@ resource "null_resource" "pip" {
   }
 
   provisioner "local-exec" {
-    command = "pip3 ${path.module}/src/requirements.txt"
+    command = "pip3 install -r ${path.module}/src/requirements.txt"
   }
 }
 
