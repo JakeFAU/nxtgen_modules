@@ -8,3 +8,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "versioning_status" {
+  description = "Versioning status"
+  type        = string
+  default     = "Enabled"
+}

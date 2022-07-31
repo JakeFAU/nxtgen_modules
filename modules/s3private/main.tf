@@ -6,6 +6,10 @@ resource "aws_kms_key" "this" {
 resource "aws_s3_bucket" "this" {
   bucket = var.bucket_name
   tags   = var.tags
+  versioning_configuration {
+    status     = var.versioning_status
+    mfa_delete = false
+  }
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
