@@ -1,9 +1,10 @@
 variable "bucket_name" {
-  type = string
+  description = "Bucket Name"
+  type        = string
 }
 
-variable "aws-region" {
-  type    = string
-  default = "us-east-1"
+variable "tags" {
+  description = "Tags to set on the bucket."
+  type        = map(string)
+  default     = {}
 }
-
