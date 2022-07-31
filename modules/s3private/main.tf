@@ -6,9 +6,12 @@ resource "aws_kms_key" "this" {
 resource "aws_s3_bucket" "this" {
   bucket = var.bucket_name
   tags   = var.tags
+}
+
+resource "aws_s3_bucket_versioning" "firehose_to_s3" {
+  bucket = aws_kms_key.this.bucket
   versioning_configuration {
-    status     = var.versioning_status
-    mfa_delete = false
+    status = var.versioning_status
   }
 }
 
