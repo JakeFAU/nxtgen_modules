@@ -3,24 +3,37 @@ provider "aws" {
 }
 
 
-module "lambda_layer_pip_requirements" {
-  source = "git@github.com:terraform-aws-modules/terraform-aws-lambda.git?ref=v3.3.1"
+resource "null_resource" "pip" {
+  triggers {
+    requirements = base64sha256(file("src/requirements.txt"))
+  }
 
-  create_function = false
-  create_layer    = true
+  provisioner "local-exec" {
+    command = "pip3 -r ${path.module}/src/requirements.txt"
+  }
+}
+
+data "archive_file" "source" {
+  type        = "zip"
+  source_dir  = "${path.module}/src"
+  output_path = "${path.module}/lambda_layer.zip"
+
+  depends_on = ["null_resource.pip"]
+}
+
+resource "aws_s3_bucket_object" "file_upload" {
+  bucket = var.lambda_layer_bucket
+  key    = "lambda-layers/${var.layer_name}"
+  source = data.archive_file.source.output_path
+}
+
+resource "aws_lambda_layer_version" "lambda_layer" {
 
   layer_name          = var.layer_name
   compatible_runtimes = ["python3.9"]
-  runtime             = "python3.9" # required to force layers to do pip install
-
-  source_path = [
-    {
-      path             = "${path.module}/src/"
-      pip_requirements = true
-      prefix_in_zip    = "python" # required to get the path correct
-    }
-  ]
-
-  tags = var.tags
-
+  description         = "A nice lambda layer stored on S3"
+  s3_bucket           = var.lambda_layer_bucket
+  s3_key              = "lambda-layers/${var.layer_name}"
+  source_code_hash    = filebase64sha256(data.archive_file.source.output_path)
 }
+

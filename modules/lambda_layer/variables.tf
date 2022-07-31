@@ -14,3 +14,8 @@ variable "tags" {
   description = "Tags for the layer"
   default     = {}
 }
+
+variable "lambda_layer_bucket" {
+  type        = string
+  description = "The bucket to store the layer in"
+}
