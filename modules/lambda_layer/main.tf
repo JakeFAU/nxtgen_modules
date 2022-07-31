@@ -39,6 +39,6 @@ resource "aws_lambda_layer_version" "lambda_layer" {
   s3_key                   = "lambda-layers/${var.layer_name}"
   source_code_hash         = base64sha256(file("src/requirements.txt"))
 
-  depends_on = [data.archive_file.source]
+  depends_on = [data.aws_s3_object.file_upload]
 }
 
