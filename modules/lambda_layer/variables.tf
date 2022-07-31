@@ -19,3 +19,9 @@ variable "lambda_layer_bucket" {
   type        = string
   description = "The bucket to store the layer in"
 }
+
+variable "arch" {
+  type        = string
+  description = "The Layer Arch"
+  default     = "x86_64"
+}
