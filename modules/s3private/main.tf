@@ -8,8 +8,8 @@ resource "aws_s3_bucket" "this" {
   tags   = var.tags
 }
 
-resource "aws_s3_bucket_versioning" "firehose_to_s3" {
-  bucket = aws_kms_key.this.bucket
+resource "aws_s3_bucket_versioning" "this" {
+  bucket = aws_s3_bucket.this.bucket
   versioning_configuration {
     status = var.versioning_status
   }
