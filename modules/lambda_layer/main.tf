@@ -4,7 +4,7 @@ provider "aws" {
 
 
 module "lambda_layer_pip_requirements" {
-  source = "git@github.com:terraform-aws-modules/terraform-aws-lambda.git?rev=v3.3.1"
+  source = "git@github.com:terraform-aws-modules/terraform-aws-lambda.git?ref=v3.3.1"
 
   create_function = false
   create_layer    = true
