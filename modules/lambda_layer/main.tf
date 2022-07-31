@@ -36,7 +36,7 @@ resource "aws_lambda_layer_version" "lambda_layer" {
   description         = "A nice lambda layer stored on S3"
   s3_bucket           = var.lambda_layer_bucket
   s3_key              = "lambda-layers/${var.layer_name}"
-  source_code_hash    = filebase64sha256(data.archive_file.source.output_path)
+  source_code_hash    = base64sha256(file("src/requirements.txt"))
 
   depends_on = [data.archive_file.source]
 }
