@@ -25,6 +25,8 @@ resource "aws_s3_bucket_object" "file_upload" {
   bucket = var.lambda_layer_bucket
   key    = "lambda-layers/${var.layer_name}"
   source = data.archive_file.source.output_path
+
+  depends_on = [data.archive_file.source]
 }
 
 resource "aws_lambda_layer_version" "lambda_layer" {
@@ -35,5 +37,7 @@ resource "aws_lambda_layer_version" "lambda_layer" {
   s3_bucket           = var.lambda_layer_bucket
   s3_key              = "lambda-layers/${var.layer_name}"
   source_code_hash    = filebase64sha256(data.archive_file.source.output_path)
+
+  depends_on = [aws_s3_bucket_object.file_upload]
 }
 
