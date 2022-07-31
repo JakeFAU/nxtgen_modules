@@ -18,7 +18,7 @@ data "archive_file" "source" {
   source_dir  = "${path.module}/src"
   output_path = "${path.module}/lambda_layer.zip"
 
-  depends_on = ["null_resource.pip"]
+  depends_on = [null_resource.pip]
 }
 
 resource "aws_s3_bucket_object" "file_upload" {
