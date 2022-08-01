@@ -2,7 +2,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-
 resource "null_resource" "pip" {
   triggers = {
     requirements = base64sha256(file(var.requirements_path))
