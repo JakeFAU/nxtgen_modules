@@ -21,6 +21,8 @@ repos:
       - id: infracost_breakdown
         args:
           - --args=--path=.
+          - --args=--terraform-var="layer_name=ds_layer"
+          - --args=--terraform-var="lambda_layer_bucket=jakefau-nxtgen-api-lambda-code"
         verbose: true
       - id: terraform_docs
       - id: terraform_fmt
