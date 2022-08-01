@@ -33,4 +33,3 @@ output "src_code_id" {
   description = "The id of the src code in the bucket"
   value       = aws_s3_object.file_upload.id
 }
-

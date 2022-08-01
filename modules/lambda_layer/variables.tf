@@ -25,3 +25,9 @@ variable "arch" {
   description = "The Layer Arch"
   default     = "x86_64"
 }
+
+variable "requirements_path" {
+  type        = string
+  description = "The [path to the requirements file"
+  default     = "./src/requirements.txt"
+}

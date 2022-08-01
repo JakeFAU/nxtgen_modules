@@ -9,8 +9,14 @@ variable "tags" {
   default     = {}
 }
 
-variable "versioning_status" {
-  description = "Versioning status"
+variable "aws_region" {
+  description = "The AWS Region"
   type        = string
-  default     = "Enabled"
+  default     = "us-east-1"
+}
+
+variable "replica_region" {
+  description = "The AWS Replica Region"
+  type        = string
+  default     = "us-west-1"
 }
