@@ -5,7 +5,7 @@ provider "aws" {
 
 resource "null_resource" "pip" {
   triggers = {
-    requirements = base64sha256(file("src/requirements.txt"))
+    requirements = base64sha256(file(var.requirements_path))
   }
 
   provisioner "local-exec" {
@@ -37,8 +37,7 @@ resource "aws_lambda_layer_version" "lambda_layer" {
   description              = "A nice lambda layer stored on S3"
   s3_bucket                = var.lambda_layer_bucket
   s3_key                   = "lambda-layers/${var.layer_name}"
-  source_code_hash         = base64sha256(file("src/requirements.txt"))
+  source_code_hash         = base64sha256(file(var.requirements_path))
 
   depends_on = [aws_s3_object.file_upload]
 }
-
