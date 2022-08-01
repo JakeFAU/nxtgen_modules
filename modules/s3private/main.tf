@@ -46,7 +46,7 @@ resource "aws_s3_bucket_public_access_block" "self" {
 }
 #tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "self_logs" {
-  bucket = "${var.bucket_name}_logs"
+  bucket = "${var.bucket_name}-logs"
   tags   = merge({ "logs" : true }, var.tags)
 }
 
