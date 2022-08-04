@@ -14,9 +14,3 @@ variable "aws_region" {
   type        = string
   default     = "us-east-1"
 }
-
-variable "replica_region" {
-  description = "The AWS Replica Region"
-  type        = string
-  default     = "us-west-1"
-}
